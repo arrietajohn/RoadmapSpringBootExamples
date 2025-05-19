@@ -1,15 +1,16 @@
 package com.caribedev.TaskManager.Common.Loggin;
 
 
-import org.aspectj.lang.annotation.Aspect;
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.stereotype.Component;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.After;
 import org.aspectj.lang.annotation.AfterThrowing;
 import org.aspectj.lang.annotation.Around;
+import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Component;
 
 
 /**
@@ -20,10 +21,10 @@ import org.aspectj.lang.annotation.Before;
 
 @Component
 @Aspect
-@Slf4j  
+  
 public class LogginAspect {
    
-//    private final static Logger logger = LoggerFactory.getLogger(LogginAspect.class);
+ private final static Logger log = LoggerFactory.getLogger(LogginAspect.class);
     
     @Before("within(com.carivede.TaskManager.Application.Commands.*)")
     public void logBeforeCommands(JoinPoint joinPoint){

@@ -13,8 +13,9 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 
 import com.caribedev.TaskManager.Domain.Exceptions.InvalidDomainValueException;
-import com.caribedev.TaskManager.Domain.Exceptions.NotFoundEntityException;
-import com.caribedev.TaskManager.Domain.Exceptions.PreexistinEntityException;
+import com.caribedev.TaskManager.Domain.Exceptions.AuthenticateUserException;
+import com.caribedev.TaskManager.Domain.Exceptions.EntityNotFoundException;
+import com.caribedev.TaskManager.Domain.Exceptions.PreexistingEntityException;
 import com.caribedev.TaskManager.Presentation.Dtos.ErrorResponse;
 import com.caribedev.TaskManager.Presentation.Dtos.ValidationErrorResponse;
 
@@ -50,14 +51,20 @@ public class GlobalExceptionHandler {
 
     }
 
-    @ExceptionHandler(NotFoundEntityException.class)
-    public ResponseEntity<ErrorResponse> handleNotFoundException(NotFoundEntityException e) {
+    @ExceptionHandler(EntityNotFoundException.class)
+    public ResponseEntity<ErrorResponse> handleNotFoundException(EntityNotFoundException e) {
         return ResponseEntity.status(HttpStatus.NOT_FOUND)
                 .body(new ErrorResponse(e.getMessage(), "ERROR_NOT_ENTITY_FOUND"));
     }
 
-    @ExceptionHandler(PreexistinEntityException.class)
-    public ResponseEntity<ErrorResponse> handlerExistingEntityException(PreexistinEntityException e) {
+    @ExceptionHandler(AuthenticateUserException.class)
+    public ResponseEntity<ErrorResponse> handleAutenticateException(AuthenticateUserException e) {
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
+                .body(new ErrorResponse(e.getMessage(), "UNAUTHORIZED"));
+    }
+
+    @ExceptionHandler(PreexistingEntityException.class)
+    public ResponseEntity<ErrorResponse> handlerExistingEntityException(PreexistingEntityException e) {
         return ResponseEntity.status(HttpStatus.CONFLICT)
                 .body(new ErrorResponse(e.getMessage(), "ERROR_ENTITY_ALREADY_EXISTS"));
     }

@@ -1,4 +1,4 @@
-package com.caribedev.TaskManager.Application.Commands;
+package com.caribedev.TaskManager.Application.Commands.Tasks.Create;
 
 import jakarta.validation.constraints.NotBlank;
 

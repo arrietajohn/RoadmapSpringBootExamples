@@ -1,4 +1,4 @@
-package com.caribedev.TaskManager.Application.Queries;
+package com.caribedev.TaskManager.Application.Queries.Tasks.SearchById;
 
 import com.caribedev.TaskManager.Domain.Exceptions.InvalidDomainValueException;
 

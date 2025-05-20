@@ -4,9 +4,9 @@ package com.caribedev.TaskManager.Domain.Exceptions;
  *
  * @author John Carlos Arrieta Arrieta
  */
-public class NotFoundEntityException extends RuntimeException{
+public class EntityNotFoundException extends RuntimeException{
 
-    public NotFoundEntityException(String message) {
+    public EntityNotFoundException(String message) {
         super(message);
     }
     
